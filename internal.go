@@ -26,10 +26,11 @@ outer:
 		// Skip fields marked as "optional" in the JSON tag
 		args := strings.Split(tag, ",")
 		for _, arg := range args {
-			if arg == "optional" || arg == "-" {
+			if arg == "optional" || arg == "-" || arg == "" {
 				continue outer
 			}
 		}
+		tag = args[0]
 
 		// If the field is a nested structure, recursively call skeleton
 		if field.Type.Kind() == reflect.Struct {
